@@ -1,13 +1,13 @@
 import React from "react";
-import "./App.css";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <>
-      <div>
-        <h1 className="text-md text-center">
-          My First Ever Professional Portfolio
-        </h1>
+      <div className="bg-[#010e02] text-white">
+        <div className="max-w-[60rem] mx-auto bg-amber-500 relative h-[2000px]">
+          <NavBar />
+        </div>
       </div>
     </>
   );

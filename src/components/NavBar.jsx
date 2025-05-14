@@ -2,7 +2,7 @@ import React from "react";
 
 const NavBar = () => {
   return (
-    <div className="bg-[#010e02] w-fit rounded-full overflow-hidden flex justify-between items-center mx-auto fixed top-3 left-1/2 -translate-x-1/2">
+    <div className="bg-[#010e02] w-fit rounded-full overflow-hidden flex justify-between items-center mx-auto fixed top-3 left-1/2 -translate-x-1/2 z-50">
       <div className="p-2 flex-shrink-0">
         <img
           src="https://placehold.co/400"

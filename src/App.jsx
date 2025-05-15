@@ -5,18 +5,19 @@ import HeroSection from "./components/HeroSection";
 import SkillsSection from "./components/Skills";
 import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
+import Footer from "./components/FooterSection";
 
 function App() {
   return (
     <>
       <div className="bg-[#010e02] text-white m-0 p-0">
-        <div className="max-w-[60rem] mx-auto bg-amber-500 relative h-[2000px] flex flex-col items-center">
+        <div className="max-w-[60rem] mx-auto bg-amber-500 relative flex flex-col items-center">
           <NavBar />
           <HeroSection />
           <SkillsSection />
           <ProjectsSection />
           <ContactSection />
-          <ScrollResetComponent />
+          <Footer />
         </div>
       </div>
     </>

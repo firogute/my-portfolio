@@ -4,6 +4,7 @@ import ScrollResetComponent from "./components/ScrollTest";
 import HeroSection from "./components/HeroSection";
 import SkillsSection from "./components/Skills";
 import ProjectsSection from "./components/ProjectsSection";
+import ContactSection from "./components/ContactSection";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <HeroSection />
           <SkillsSection />
           <ProjectsSection />
+          <ContactSection />
           <ScrollResetComponent />
         </div>
       </div>

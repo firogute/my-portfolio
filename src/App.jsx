@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import ScrollResetComponent from "./components/ScrollTest";
 import HeroSection from "./components/HeroSection";
 import SkillsSection from "./components/Skills";
+import ProjectsSection from "./components/ProjectsSection";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <NavBar />
           <HeroSection />
           <SkillsSection />
+          <ProjectsSection />
           <ScrollResetComponent />
         </div>
       </div>

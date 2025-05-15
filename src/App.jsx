@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <div className="bg-[#010e02] text-white m-0 p-0">
-        <div className="max-w-[60rem] mx-auto bg-amber-500 relative flex flex-col items-center">
+        <div className="max-w-[60rem] mx-auto relative flex flex-col items-center">
           <NavBar />
           <HeroSection />
           <SkillsSection />

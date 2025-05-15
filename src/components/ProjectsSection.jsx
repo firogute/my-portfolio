@@ -53,7 +53,7 @@ const ProjectsSection = () => {
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Projects</h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           {projects.map((project, index) => (
             <a
               href={project.link}
@@ -62,19 +62,25 @@ const ProjectsSection = () => {
               rel="noopener noreferrer"
               className="group relative block overflow-hidden rounded-lg shadow-md hover:shadow-xl transition"
             >
-              {/* Image and Hover Overlay */}
-              <div className="relative">
+              <div className="relative overflow-hidden group">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-52 object-cover transition-transform duration-300 group-hover:scale-110 group-hover:opacity-90"
+                  className="w-full h-52 object-cover transform transition-transform duration-500 group-hover:scale-105 group-hover:brightness-90"
                 />
-                <div className="absolute inset-0 bg-gray-700 bg-opacity-10 opacity-0 group-hover:opacity-50 transition-opacity flex justify-center items-center gap-4 text-3xl text-white">
-                  {project.tech.map((icon, idx) => (
-                    <span key={idx} className="hover:text-pink-400">
-                      {icon}
-                    </span>
-                  ))}
+
+                {/* Icon Slide-Up Hover Overlay */}
+                <div className="absolute inset-0 flex items-end justify-center bg-opacity-0 group-hover:bg-black/35 group-hover:bg-opacity-40 transition-all duration-500 pointer-events-none z-10">
+                  <div className="flex gap-4 text-white text-2xl mb-4 opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                    {project.tech.map((icon, idx) => (
+                      <span
+                        key={idx}
+                        className="hover:text-pink-400 transition-colors"
+                      >
+                        {icon}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 

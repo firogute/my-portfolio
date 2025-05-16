@@ -192,30 +192,6 @@ const HeroSection = () => {
             <span className="absolute inset-0 bg-[#06890a] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
           </motion.a>
         </motion.div>
-
-        {/* Tech stack badges */}
-        <motion.div
-          className="flex flex-wrap justify-center md:justify-start gap-3 mt-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-        >
-          {[
-            "React",
-            "Node.js",
-            "PostgreSQL",
-            "MongoDB",
-            "TypeScript",
-            "Tailwind",
-          ].map((tech, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 text-sm font-medium rounded-full bg-gray-800/50 text-gray-300 border border-gray-700 hover:bg-gray-700/50 transition-colors duration-300"
-            >
-              {tech}
-            </span>
-          ))}
-        </motion.div>
       </motion.div>
     </motion.section>
   );

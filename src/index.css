@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-
-
 :root {
   --linearPrimarySecondary: linear-gradient(#06890a, #5db8f8);
   --linearPrimaryAccent: linear-gradient(#06890a, #0a33d6);
@@ -24,4 +22,13 @@
   --primary: #76f97a;
   --secondary: #0761a2;
   --accent: #2952f5;
+}
+
+@theme {
+  --font-family-sans: "Inter", sans-serif;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }

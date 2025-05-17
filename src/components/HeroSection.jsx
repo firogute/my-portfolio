@@ -49,7 +49,7 @@ const HeroSection = () => {
       initial="hidden"
       animate={controls}
       variants={containerVariants}
-      className="relative mt-24 p-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 px-6 lg:px-8 overflow-hidden"
+      className="relative mt-24 p-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 px-6 lg:px-8 overflow-hidden font-family-sans"
     >
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#06890a] opacity-10 rounded-full filter blur-3xl -z-10"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#4dc247] opacity-5 rounded-full filter blur-3xl -z-10"></div>

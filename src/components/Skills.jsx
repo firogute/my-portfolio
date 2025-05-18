@@ -8,6 +8,7 @@ import {
   FaGitAlt,
   FaFigma,
   FaDocker,
+  FaAws,
 } from "react-icons/fa";
 import {
   SiTailwindcss,
@@ -18,95 +19,68 @@ import {
   SiGraphql,
   SiRedux,
   SiExpress,
+  SiMongodb,
+  SiFirebase,
+  SiJest,
+  SiStorybook,
+  SiVercel,
+  SiNetlify,
 } from "react-icons/si";
 import { TbBrandThreejs } from "react-icons/tb";
 
-const skills = [
+const skillCategories = [
   {
-    name: "HTML5",
-    icon: <FaHtml5 />,
-    proficiency: 95,
-    color: "text-orange-500",
+    name: "Frontend",
+    skills: [
+      { name: "React", icon: <FaReact />, color: "text-cyan-400" },
+      { name: "Next.js", icon: <SiNextdotjs />, color: "text-white" },
+      { name: "TypeScript", icon: <SiTypescript />, color: "text-blue-600" },
+      { name: "JavaScript", icon: <SiJavascript />, color: "text-yellow-400" },
+      { name: "HTML5", icon: <FaHtml5 />, color: "text-orange-500" },
+      { name: "CSS3", icon: <FaCss3Alt />, color: "text-blue-500" },
+      { name: "Tailwind", icon: <SiTailwindcss />, color: "text-sky-400" },
+      { name: "Redux", icon: <SiRedux />, color: "text-purple-500" },
+      { name: "Three.js", icon: <TbBrandThreejs />, color: "text-green-300" },
+    ],
+    gradient: "from-cyan-500 to-blue-600",
   },
   {
-    name: "CSS3",
-    icon: <FaCss3Alt />,
-    proficiency: 90,
-    color: "text-blue-500",
+    name: "Backend",
+    skills: [
+      { name: "Node.js", icon: <FaNodeJs />, color: "text-green-500" },
+      { name: "Express", icon: <SiExpress />, color: "text-gray-300" },
+      { name: "GraphQL", icon: <SiGraphql />, color: "text-pink-600" },
+    ],
+    gradient: "from-purple-500 to-pink-600",
   },
   {
-    name: "JavaScript",
-    icon: <SiJavascript />,
-    proficiency: 92,
-    color: "text-yellow-400",
+    name: "Database",
+    skills: [
+      { name: "PostgreSQL", icon: <SiPostgresql />, color: "text-blue-800" },
+      { name: "MongoDB", icon: <SiMongodb />, color: "text-green-600" },
+      { name: "Firebase", icon: <SiFirebase />, color: "text-yellow-500" },
+    ],
+    gradient: "from-emerald-500 to-teal-600",
   },
   {
-    name: "TypeScript",
-    icon: <SiTypescript />,
-    proficiency: 85,
-    color: "text-blue-600",
-  },
-  { name: "React", icon: <FaReact />, proficiency: 93, color: "text-cyan-400" },
-  {
-    name: "Next.js",
-    icon: <SiNextdotjs />,
-    proficiency: 30,
-    color: "text-white",
+    name: "DevOps & Tools",
+    skills: [
+      { name: "Git", icon: <FaGitAlt />, color: "text-red-500" },
+      { name: "Docker", icon: <FaDocker />, color: "text-blue-400" },
+      { name: "AWS", icon: <FaAws />, color: "text-amber-500" },
+      { name: "Jest", icon: <SiJest />, color: "text-red-700" },
+      { name: "Storybook", icon: <SiStorybook />, color: "text-pink-500" },
+    ],
+    gradient: "from-amber-500 to-orange-600",
   },
   {
-    name: "Redux",
-    icon: <SiRedux />,
-    proficiency: 87,
-    color: "text-purple-500",
-  },
-  {
-    name: "Tailwind",
-    icon: <SiTailwindcss />,
-    proficiency: 94,
-    color: "text-sky-400",
-  },
-  {
-    name: "Node.js",
-    icon: <FaNodeJs />,
-    proficiency: 89,
-    color: "text-green-500",
-  },
-  {
-    name: "Express",
-    icon: <SiExpress />,
-    proficiency: 86,
-    color: "text-gray-300",
-  },
-  {
-    name: "GraphQL",
-    icon: <SiGraphql />,
-    proficiency: 82,
-    color: "text-pink-600",
-  },
-  {
-    name: "PostgreSQL",
-    icon: <SiPostgresql />,
-    proficiency: 84,
-    color: "text-blue-800",
-  },
-  {
-    name: "Three.js",
-    icon: <TbBrandThreejs />,
-    proficiency: 78,
-    color: "text-green-300",
-  },
-  { name: "Git", icon: <FaGitAlt />, proficiency: 91, color: "text-red-500" },
-  {
-    name: "Docker",
-    icon: <FaDocker />,
-    proficiency: 80,
-    color: "text-blue-400",
-  },
-  {
-    name: "Figma",
-    icon: <FaFigma />,
-    proficiency: 83,
-    color: "text-purple-300",
+    name: "Design & Services",
+    skills: [
+      { name: "Figma", icon: <FaFigma />, color: "text-purple-300" },
+      { name: "Vercel", icon: <SiVercel />, color: "text-white" },
+      { name: "Netlify", icon: <SiNetlify />, color: "text-green-400" },
+    ],
+    gradient: "from-violet-500 to-fuchsia-600",
   },
 ];
 
@@ -125,29 +99,28 @@ const SkillsSection = () => {
     },
   };
 
-  const item = {
-    hidden: { y: 20, opacity: 0, scale: 0.8 },
+  const categoryVariants = {
+    hidden: { y: 50, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      scale: 1,
       transition: {
-        duration: 0.6,
-        ease: "backOut",
+        duration: 0.8,
+        ease: "easeOut",
       },
     },
   };
 
-  const progress = {
-    hidden: { pathLength: 0 },
-    visible: (i) => ({
-      pathLength: i.proficiency / 100,
+  const skillVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
       transition: {
-        duration: 1.5,
-        delay: 0.3 + i.index * 0.05,
-        ease: "easeInOut",
+        duration: 0.5,
+        ease: "backOut",
       },
-    }),
+    },
   };
 
   return (
@@ -164,10 +137,10 @@ const SkillsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-            My <span className="text-[#06890a]">Technical</span> Expertise
+            My <span className="text-[#06890a]">Technical</span> Stack
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Visual representation of my proficiency across key technologies
+            Comprehensive collection of technologies I work with
           </p>
         </motion.div>
 
@@ -176,69 +149,49 @@ const SkillsSection = () => {
           variants={container}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8"
+          className="grid gap-8 lg:grid-cols-3"
         >
-          {skills.map((skill, index) => (
+          {skillCategories.map((category, index) => (
             <motion.div
               key={index}
-              variants={item}
-              whileHover={{ y: -10, scale: 1.05 }}
-              className="group relative"
+              variants={categoryVariants}
+              className="relative group"
             >
-              <div className="h-full bg-gradient-to-br from-gray-900/50 to-gray-800/20 border border-gray-700/50 rounded-2xl p-6 flex flex-col items-center justify-center transition-all duration-300 group-hover:border-[#06890a]/50 group-hover:bg-gray-800/30 group-hover:shadow-lg group-hover:shadow-[#06890a]/10">
-                {/* Circular progress indicator - now with proper spacing */}
-                <div className="relative w-28 h-28 mb-4 flex flex-col items-center justify-center">
-                  <svg className="w-24 h-24" viewBox="0 0 100 100">
-                    {/* Background circle */}
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="45"
-                      fill="none"
-                      stroke="#2d3748"
-                      strokeWidth="6"
-                      strokeLinecap="round"
-                    />
-                    {/* Animated progress circle */}
-                    <motion.circle
-                      cx="50"
-                      cy="50"
-                      r="45"
-                      fill="none"
-                      stroke="url(#gradient)"
-                      strokeWidth="6"
-                      strokeLinecap="round"
-                      strokeDasharray="283"
-                      strokeDashoffset="283"
-                      variants={progress}
-                      custom={{ proficiency: skill.proficiency, index }}
-                      initial="hidden"
-                      animate="visible"
-                    />
-                    <defs>
-                      <linearGradient
-                        id="gradient"
-                        x1="0%"
-                        y1="0%"
-                        x2="100%"
-                        y2="0%"
-                      >
-                        <stop offset="0%" stopColor="#06890a" />
-                        <stop offset="100%" stopColor="#4dc247" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
+              {/* Category card */}
+              <div className="h-full bg-gradient-to-br from-gray-900/50 to-gray-800/20 border border-gray-700/50 rounded-2xl p-6 transition-all duration-500 group-hover:border-[#06890a]/50 group-hover:bg-gray-800/30 group-hover:shadow-lg group-hover:shadow-[#06890a]/10 overflow-hidden">
+                {/* Gradient header */}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${category.gradient}`}
+                ></div>
 
-                  {/* Skill icon centered in circle with absolute positioning */}
-                  <div
-                    className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl ${skill.color}`}
-                  >
-                    {skill.icon}
+                {/* Category title */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className={`text-2xl ${category.skills[0].color}`}>
+                    {category.skills[0].icon}
                   </div>
+                  <h3 className="text-xl font-bold text-white">
+                    {category.name}
+                  </h3>
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-1 text-center">
-                  {skill.name}
-                </h3>
+
+                {/* Skills grid */}
+                <motion.div className="grid grid-cols-3 gap-4">
+                  {category.skills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skillIndex}
+                      variants={skillVariants}
+                      whileHover={{ y: -5, scale: 1.1 }}
+                      className="flex flex-col items-center justify-center p-3 rounded-xl bg-gray-800/30 hover:bg-gray-700/50 transition-all duration-300"
+                    >
+                      <div className={`text-3xl mb-2 ${skill.color}`}>
+                        {skill.icon}
+                      </div>
+                      <span className="text-xs font-medium text-center text-gray-300">
+                        {skill.name}
+                      </span>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
 
               {/* Glow effect */}
@@ -247,13 +200,20 @@ const SkillsSection = () => {
           ))}
         </motion.div>
 
-        {/* Proficiency legend */}
+        {/* Additional decorative elements */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8 }}
-          className="mt-12 flex justify-center"
-        ></motion.div>
+          transition={{ delay: 1 }}
+          className="mt-16 text-center"
+        >
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gray-800/50 border border-gray-700/50 rounded-full">
+            <div className="w-2 h-2 bg-[#4dc247] rounded-full animate-pulse"></div>
+            <span className="text-sm font-medium text-gray-300">
+              Continuously expanding my skill set
+            </span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

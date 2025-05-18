@@ -17,7 +17,7 @@ const itemVariant = {
 
 const ProjectCard = ({ project }) => {
   const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: true, margin: "-60px" });
+  const isInView = useInView(cardRef, { once: false, margin: "-50px" });
 
   return (
     <motion.div

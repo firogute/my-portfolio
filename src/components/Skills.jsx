@@ -141,7 +141,7 @@ const SkillsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-            My <span className="text-[#06890a]">Technical</span> Arsenal
+            My <span className="text-[#06890a]">Tech</span> Stack
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             Tools and technologies I'm proficient with to build exceptional

@@ -11,6 +11,8 @@ import LoadingScreen from "./components/LoadingScreen";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [enableScrollTracking, setEnableScrollTracking] = useState(false);
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -21,6 +23,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
+      setEnableScrollTracking(true);
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -32,10 +35,12 @@ function App() {
 
   return (
     <div className="relative bg-gradient-to-b from-[#010e02] to-black text-white">
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-[#06890a] z-50 origin-left"
-        style={{ scaleX }}
-      />
+      {enableScrollTracking && (
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-[#06890a] z-50 origin-left"
+          style={{ scaleX }}
+        />
+      )}
 
       <div className="max-w-[85rem] mx-auto flex flex-col items-center px-4 sm:px-6 lg:px-8">
         <NavBar />

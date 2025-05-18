@@ -86,7 +86,7 @@ const skillCategories = [
 
 const SkillsSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
+  const isInView = useInView(ref, { once: false, margin: "-50px" });
 
   const container = {
     hidden: { opacity: 0 },

@@ -94,7 +94,7 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative py-28 overflow-hidden bg-gradient-to-b from-gray-900 to-black"
+      className="relative py-22 overflow-hidden bg-gradient-to-b from-gray-900 to-black"
     >
       {/* Background elements */}
       <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#06890a] rounded-full filter blur-3xl opacity-10 -z-10"></div>
@@ -159,9 +159,6 @@ const ContactSection = () => {
             >
               your.email@example.com
             </a>
-          </p>
-          <p className="text-xs mt-4 text-gray-500">
-            © {new Date().getFullYear()} Your Name. All rights reserved.
           </p>
         </motion.div>
       </div>

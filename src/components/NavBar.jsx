@@ -37,7 +37,6 @@ const NavBar = () => {
 
   return (
     <>
-      {/* Desktop Navigation */}
       <motion.nav
         ref={navRef}
         initial={{ y: -100 }}
@@ -61,7 +60,6 @@ const NavBar = () => {
             transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
           />
 
-          {/* Main Nav Container */}
           <motion.div
             className={`relative bg-gradient-to-b from-gray-900/80 to-gray-900/90 backdrop-blur-2xl rounded-full flex items-center justify-between transition-all duration-500 ${
               scrollProgress > 0.1
@@ -70,7 +68,6 @@ const NavBar = () => {
             }`}
             whileHover={{ scale: 1.01 }}
           >
-            {/* Logo */}
             <motion.div
               className="p-2 pl-5 flex-shrink-0"
               whileHover={{ rotate: 15 }}
@@ -96,7 +93,6 @@ const NavBar = () => {
               </div>
             </motion.div>
 
-            {/* Desktop Menu */}
             <nav className="hidden md:block">
               <ul className="flex gap-1 px-2">
                 {navItems.map((item) => (
@@ -131,7 +127,6 @@ const NavBar = () => {
                       )}
                     </a>
 
-                    {/* Hover background effect */}
                     {hoveredItem === item.id && (
                       <motion.span
                         className="absolute inset-0 bg-gray-800/30 rounded-full"
@@ -147,7 +142,6 @@ const NavBar = () => {
               </ul>
             </nav>
 
-            {/* Social Links */}
             <div className="hidden md:flex items-center gap-3 pr-4">
               {socialLinks.map((social, index) => (
                 <motion.a
@@ -172,7 +166,6 @@ const NavBar = () => {
               </motion.button>
             </div>
 
-            {/* Mobile menu button */}
             <button
               className="md:hidden p-4 text-gray-400 hover:text-white transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -184,7 +177,6 @@ const NavBar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div

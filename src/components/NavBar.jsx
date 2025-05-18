@@ -4,6 +4,7 @@ import {
   AnimatePresence,
   useMotionValueEvent,
   useScroll,
+  useAnimation,
 } from "framer-motion";
 import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
@@ -13,13 +14,30 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef(null);
+  const controls = useAnimation();
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const progress = Math.min(latest / 300, 1);
     setScrollProgress(progress);
+    setIsScrolled(latest > 50);
   });
+
+  useEffect(() => {
+    if (isScrolled) {
+      controls.start({
+        boxShadow: "0 10px 30px -10px rgba(5, 137, 10, 0.2)",
+        borderColor: "rgba(77, 194, 71, 0.1)",
+      });
+    } else {
+      controls.start({
+        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+        borderColor: "rgba(255, 255, 255, 0.05)",
+      });
+    }
+  }, [isScrolled, controls]);
 
   const navItems = [
     { id: "home", label: "Home" },
@@ -45,30 +63,31 @@ const NavBar = () => {
         className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl mx-auto"
       >
         <div className="relative">
+          {/* Animated border gradient */}
           <motion.div
-            className="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-[#06890a] via-[#4dc247] to-[#06890a] pointer-events-none"
+            className="absolute inset-0 rounded-full p-[1px] pointer-events-none overflow-hidden"
             style={{
               background: `conic-gradient(from ${
                 scrollProgress * 360
               }deg, #06890a, #4dc247, #06890a)`,
             }}
             animate={{
-              background: `conic-gradient(from ${
-                scrollProgress * 360
-              }deg, #06890a, #4dc247, #06890a)`,
+              opacity: isScrolled ? 1 : 0.7,
             }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 0.3 }}
           />
 
+          {/* Main nav container */}
           <motion.div
-            className={`relative bg-gradient-to-b from-gray-900/80 to-gray-900/90 backdrop-blur-2xl rounded-full flex items-center justify-between transition-all duration-500 ${
-              scrollProgress > 0.1
-                ? "shadow-2xl shadow-[#06890a]/20"
-                : "shadow-lg"
+            className={`relative bg-gradient-to-b from-gray-900/95 to-gray-900 backdrop-blur-2xl rounded-full flex items-center justify-between border transition-all duration-300 ${
+              isMenuOpen ? "border-[#4dc247]/30" : "border-transparent"
             }`}
+            animate={controls}
             whileHover={{ scale: 1.01 }}
           >
-            <motion.div
+            {/* Logo */}
+            <motion.a
+              href="#home"
               className="p-2 pl-5 flex-shrink-0"
               whileHover={{ rotate: 15 }}
               whileTap={{ scale: 0.9 }}
@@ -76,9 +95,7 @@ const NavBar = () => {
               <div className="relative group">
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-[#06890a] to-[#4dc247] rounded-full opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500"
-                  animate={{
-                    rotate: [0, 360],
-                  }}
+                  animate={{ rotate: [0, 360] }}
                   transition={{
                     duration: 8,
                     repeat: Infinity,
@@ -88,11 +105,12 @@ const NavBar = () => {
                 <img
                   src="https://placehold.co/400"
                   alt="Logo"
-                  className="relative z-10 w-10 h-10 object-contain rounded-full border-2 border-transparent group-hover:border-[#06890a] transition-all duration-500"
+                  className="relative z-10 w-10 h-10 object-contain rounded-full border-2 border-transparent group-hover:border-[#4dc247]/50 transition-all duration-300"
                 />
               </div>
-            </motion.div>
+            </motion.a>
 
+            {/* Desktop Nav Links */}
             <nav className="hidden md:block">
               <ul className="flex gap-1 px-2">
                 {navItems.map((item) => (
@@ -116,7 +134,7 @@ const NavBar = () => {
                       {item.label}
                       {activeSection === item.id && (
                         <motion.span
-                          className="absolute bottom-3 left-1/2 w-4 h-0.5 bg-[#4dc247] rounded-full"
+                          className="absolute bottom-3 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#4dc247] rounded-full"
                           layoutId="navIndicator"
                           transition={{
                             type: "spring",
@@ -129,7 +147,7 @@ const NavBar = () => {
 
                     {hoveredItem === item.id && (
                       <motion.span
-                        className="absolute inset-0 bg-gray-800/30 rounded-full"
+                        className="absolute inset-0 bg-gray-800/30 rounded-full -z-10"
                         layoutId="navHoverBg"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -142,7 +160,8 @@ const NavBar = () => {
               </ul>
             </nav>
 
-            <div className="hidden md:flex items-center gap-3 pr-4">
+            {/* Desktop Social Links & Resume Button */}
+            <div className="hidden md:flex items-center gap-2 pr-4">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
@@ -150,33 +169,45 @@ const NavBar = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  whileHover={{ y: -2 }}
+                  whileHover={{ y: -2, color: "#4dc247" }}
                   whileTap={{ scale: 0.9 }}
-                  className="p-2 text-gray-400 hover:text-[#4dc247] transition-colors"
+                  className="p-2 text-gray-400 transition-colors"
                 >
                   {social.icon}
                 </motion.a>
               ))}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
+              <motion.a
+                href="#"
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "rgba(5, 137, 10, 0.3)",
+                }}
                 whileTap={{ scale: 0.95 }}
-                className="ml-2 px-4 py-2 text-xs font-semibold bg-[#06890a]/20 text-[#4dc247] border border-[#4dc247]/30 rounded-full flex items-center gap-1 hover:bg-[#06890a]/30 transition-all"
+                className="ml-2 px-4 py-2 text-xs font-semibold bg-[#06890a]/20 text-[#4dc247] border border-[#4dc247]/30 rounded-full flex items-center gap-1 transition-all"
               >
                 Resume <FiArrowUpRight className="text-xs" />
-              </motion.button>
+              </motion.a>
             </div>
 
-            <button
+            {/* Mobile Menu Button */}
+            <motion.button
               className="md:hidden p-4 text-gray-400 hover:text-white transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </button>
+              {isMenuOpen ? (
+                <FiX size={24} className="text-[#4dc247]" />
+              ) : (
+                <FiMenu size={24} />
+              )}
+            </motion.button>
           </motion.div>
         </div>
       </motion.nav>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -185,79 +216,80 @@ const NavBar = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed top-24 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-md bg-gray-900/95 backdrop-blur-2xl border border-gray-700/30 rounded-2xl overflow-hidden shadow-2xl md:hidden"
+            style={{
+              boxShadow:
+                "0 20px 25px -5px rgba(5, 137, 10, 0.1), 0 10px 10px -5px rgba(5, 137, 10, 0.04)",
+            }}
           >
-            <div className="relative p-[1px] rounded-2xl overflow-hidden">
-              <motion.div
-                className="absolute inset-0"
-                style={{
-                  background: `conic-gradient(
-                    from 0deg,
-                    #06890a,
-                    #4dc247,
-                    #06890a
-                  )`,
-                }}
-                animate={{
-                  background: `conic-gradient(
-                    from ${scrollProgress * 360}deg,
-                    #06890a,
-                    #4dc247,
-                    #06890a
-                  )`,
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              />
-              <div className="relative bg-gray-900/95 rounded-2xl backdrop-blur-2xl">
-                <ul className="flex flex-col divide-y divide-gray-700/30">
-                  {navItems.map((item) => (
-                    <motion.li
-                      key={item.id}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: item.id * 0.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <a
-                        href={`#${item.id}`}
-                        className={`block px-6 py-4 text-lg font-medium transition-colors ${
-                          activeSection === item.id
-                            ? "text-[#4dc247] bg-[#06890a]/10"
-                            : "text-gray-300 hover:text-white hover:bg-gray-800/50"
-                        }`}
-                        onClick={() => {
-                          setActiveSection(item.id);
-                          setIsMenuOpen(false);
-                        }}
-                      >
-                        {item.label}
-                      </a>
-                    </motion.li>
-                  ))}
-
-                  <motion.li
-                    className="flex justify-center gap-6 p-6"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
+            <ul className="flex flex-col divide-y divide-gray-700/30">
+              {navItems.map((item, index) => (
+                <motion.li
+                  key={item.id}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <a
+                    href={`#${item.id}`}
+                    className={`block px-6 py-4 text-lg font-medium transition-colors ${
+                      activeSection === item.id
+                        ? "text-[#4dc247] bg-[#06890a]/10"
+                        : "text-gray-300 hover:text-white hover:bg-gray-800/50"
+                    }`}
+                    onClick={() => {
+                      setActiveSection(item.id);
+                      setIsMenuOpen(false);
+                    }}
                   >
-                    {socialLinks.map((social, index) => (
-                      <motion.a
-                        key={index}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.label}
-                        whileHover={{ y: -3 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="text-2xl text-gray-400 hover:text-[#4dc247] transition-colors"
-                      >
-                        {social.icon}
-                      </motion.a>
-                    ))}
-                  </motion.li>
-                </ul>
-              </div>
-            </div>
+                    <motion.span
+                      whileHover={{ x: 5 }}
+                      className="flex items-center gap-2"
+                    >
+                      {item.label}
+                      {activeSection === item.id && (
+                        <motion.span
+                          className="w-2 h-2 bg-[#4dc247] rounded-full"
+                          layoutId="mobileNavIndicator"
+                        />
+                      )}
+                    </motion.span>
+                  </a>
+                </motion.li>
+              ))}
+
+              <motion.li
+                className="flex flex-col items-center gap-4 p-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="flex justify-center gap-6">
+                  {socialLinks.map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      whileHover={{ y: -3, scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="text-2xl text-gray-400 hover:text-[#4dc247] transition-colors"
+                    >
+                      {social.icon}
+                    </motion.a>
+                  ))}
+                </div>
+                <motion.a
+                  href="#"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="px-6 py-3 text-sm font-semibold bg-[#06890a]/20 text-[#4dc247] border border-[#4dc247]/30 rounded-full flex items-center gap-2 transition-all"
+                >
+                  Download Resume <FiArrowUpRight className="text-xs" />
+                </motion.a>
+              </motion.li>
+            </ul>
           </motion.div>
         )}
       </AnimatePresence>

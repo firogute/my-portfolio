@@ -21,9 +21,12 @@ function App() {
   });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const timer = setTimeout(() => {
-      setIsLoading(false);
-      setEnableScrollTracking(true);
+      requestAnimationFrame(() => {
+        setIsLoading(false);
+        setEnableScrollTracking(true);
+      });
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -38,6 +41,7 @@ function App() {
       {enableScrollTracking && (
         <motion.div
           className="fixed top-0 left-0 right-0 h-1 bg-[#06890a] z-50 origin-left"
+          initial={{ scaleX: 0 }}
           style={{ scaleX }}
         />
       )}

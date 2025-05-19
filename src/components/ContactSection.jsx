@@ -19,31 +19,31 @@ const ContactSection = () => {
   const socialLinks = [
     {
       icon: <FaEnvelope className="text-red-400" />,
-      url: "mailto:your.email@example.com",
+      url: "mailto:firomsaguteta11@gmail.com",
       label: "Email",
       hoverColor: "hover:text-red-400",
     },
     {
       icon: <FaGithub className="text-gray-200" />,
-      url: "https://github.com/yourusername",
+      url: "https://github.com/firogute",
       label: "GitHub",
       hoverColor: "hover:text-purple-400",
     },
     {
       icon: <FaLinkedin className="text-blue-500" />,
-      url: "https://linkedin.com/in/yourusername",
+      url: "https://linkedin.com/in/firoguteta12",
       label: "LinkedIn",
       hoverColor: "hover:text-blue-400",
     },
     {
       icon: <FaXTwitter className="text-gray-400" />,
-      url: "https://twitter.com/yourusername",
+      url: "https://twitter.com/FiroGute492",
       label: "Twitter",
       hoverColor: "hover:text-blue-300",
     },
     {
       icon: <FaDiscord className="text-indigo-400" />,
-      url: "https://discord.com/users/yourusername",
+      url: "https://discord.com/users/firogute13",
       label: "Discord",
       hoverColor: "hover:text-indigo-300",
     },
@@ -55,7 +55,7 @@ const ContactSection = () => {
     },
     {
       icon: <SiLeetcode className="text-yellow-500" />,
-      url: "https://leetcode.com/yourusername",
+      url: "https://leetcode.com/firogute",
       label: "LeetCode",
       hoverColor: "hover:text-yellow-400",
     },
@@ -70,24 +70,6 @@ const ContactSection = () => {
       url: "https://stackoverflow.com/users/yourusername",
       label: "Stack Overflow",
       hoverColor: "hover:text-orange-400",
-    },
-    {
-      icon: <SiHashnode className="text-blue-400" />,
-      url: "https://hashnode.com/@yourusername",
-      label: "Hashnode",
-      hoverColor: "hover:text-blue-300",
-    },
-    {
-      icon: <SiCodepen className="text-gray-300" />,
-      url: "https://codepen.io/yourusername",
-      label: "CodePen",
-      hoverColor: "hover:text-white",
-    },
-    {
-      icon: <FaYoutube className="text-red-500" />,
-      url: "https://youtube.com/@yourusername",
-      label: "YouTube",
-      hoverColor: "hover:text-red-400",
     },
   ];
 
@@ -154,10 +136,10 @@ const ContactSection = () => {
           <p className="text-sm">
             Prefer a direct approach? <br className="sm:hidden" />
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:firomsaguteta11@gmail.com"
               className="text-[#4dc247] hover:underline"
             >
-              your.email@example.com
+              firomsaguteta11@gmail.com
             </a>
           </p>
         </motion.div>

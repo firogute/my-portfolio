@@ -1,4 +1,3 @@
-// components/ProjectCard.jsx
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
@@ -28,12 +27,17 @@ const ProjectCard = ({ project }) => {
       whileHover={{ y: -10 }}
       className="group relative"
     >
-      <div className="h-full bg-gradient-to-br from-gray-900/50 to-gray-800/20 border border-gray-700/50 rounded-2xl overflow-hidden transition-all duration-300 group-hover:border-[#06890a]/50 group-hover:bg-gray-800/30 group-hover:shadow-lg group-hover:shadow-[#06890a]/10">
+      <div className="h-full bg-gradient-to-br from-gray-900/50 to-gray-800/20 border border-gray-700/50 rounded-2xl overflow-hidden transition-all duration-500 group-hover:border-[#06890a]/50 group-hover:bg-gray-800/30 group-hover:shadow-xl group-hover:shadow-[#06890a]/10">
+        {/* Image + tech icons overlay */}
         <div className="relative overflow-hidden h-48">
-          <img
+          <motion.img
             src={project.image}
             alt={`Preview of ${project.title}`}
-            className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover"
+            initial={{ scale: 1 }}
+            animate={{ scale: isInView ? 1 : 1 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.5 }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
             <div className="flex gap-4 text-white text-2xl">
@@ -64,24 +68,28 @@ const ProjectCard = ({ project }) => {
           <p className="text-sm text-gray-400 mb-4">{project.description}</p>
 
           <div className="flex gap-4 mt-4">
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-medium text-white hover:text-[#4dc247] transition-colors"
-            >
-              <FaExternalLinkAlt />
-              Live Demo
-            </a>
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors"
-            >
-              <FaGithub />
-              Code
-            </a>
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-medium text-white hover:text-[#4dc247] transition-colors"
+              >
+                <FaExternalLinkAlt />
+                Live Demo
+              </a>
+            )}
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors"
+              >
+                <FaGithub />
+                Code
+              </a>
+            )}
           </div>
         </div>
       </div>

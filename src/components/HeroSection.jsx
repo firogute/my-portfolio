@@ -50,7 +50,7 @@ const HeroSection = () => {
       initial="hidden"
       animate={controls}
       variants={containerVariants}
-      className="relative pt-32 pb-24 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 lg:gap-24 overflow-hidden"
+      className="relative pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 lg:gap-24 overflow-hidden"
     >
       {/* Subtle background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">

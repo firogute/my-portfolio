@@ -28,7 +28,6 @@ const ProjectCard = ({ project }) => {
       className="group relative"
     >
       <div className="h-full bg-gradient-to-br from-gray-900/50 to-gray-800/20 border border-gray-700/50 rounded-2xl overflow-hidden transition-all duration-500 group-hover:border-[#06890a]/50 group-hover:bg-gray-800/30 group-hover:shadow-xl group-hover:shadow-[#06890a]/10">
-        {/* Image + tech icons overlay */}
         <div className="relative overflow-hidden h-48">
           <motion.img
             src={project.image}
@@ -55,7 +54,6 @@ const ProjectCard = ({ project }) => {
           </div>
         </div>
 
-        {/* Info */}
         <div className="p-6">
           <div className="flex justify-between items-start mb-2">
             <h3 className="text-xl font-semibold text-white group-hover:text-[#4dc247] transition-colors">

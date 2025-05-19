@@ -117,7 +117,7 @@ const projects = [
 
 const ProjectsSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const isInView = useInView(ref, { once: false, margin: "100px" });
 
   const container = {
     hidden: { opacity: 0 },

@@ -14,7 +14,7 @@ import { SiLeetcode, SiDevdotto, SiHashnode, SiCodepen } from "react-icons/si";
 
 const ContactSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const socialLinks = [
     {
@@ -76,9 +76,8 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative py-22 overflow-hidden bg-gradient-to-b from-gray-900 to-black"
+      className="relative pt-22 pb-14 overflow-hidden bg-gradient-to-b from-gray-900 to-black"
     >
-      {/* Background elements */}
       <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#06890a] rounded-full filter blur-3xl opacity-10 -z-10"></div>
       <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-[#4dc247] rounded-full filter blur-3xl opacity-5 -z-10"></div>
 

@@ -54,14 +54,12 @@ const Footer = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className="relative bg-gradient-to-t from-[#0c140c] to-black border-t border-gray-800/50 py-8 mt-20"
+      className="relative bg-gradient-to-t from-[#0c140c] to-black border-t border-gray-800/50 py-8 mt-12"
     >
-      {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#06890a] to-transparent opacity-20"></div>
 
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          {/* Copyright text */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -75,11 +73,10 @@ const Footer = () => {
             <span className="hidden sm:inline-flex items-center gap-1 ml-2">
               <span>Made with</span>
               <FaHeart className="text-red-500 animate-pulse" />
-              <span>in Ethiopia</span>
+              <span>by Firomsa</span>
             </span>
           </motion.div>
 
-          {/* Social links */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -103,27 +100,6 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Additional footer links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4 }}
-          className="flex flex-wrap justify-center gap-4 mt-6 text-xs text-gray-500"
-        >
-          <a href="#privacy" className="hover:text-gray-300 transition-colors">
-            Privacy Policy
-          </a>
-          <span>•</span>
-          <a href="#terms" className="hover:text-gray-300 transition-colors">
-            Terms of Service
-          </a>
-          <span>•</span>
-          <a href="#cookies" className="hover:text-gray-300 transition-colors">
-            Cookie Policy
-          </a>
-        </motion.div>
-
-        {/* Made with love for mobile */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
@@ -132,7 +108,7 @@ const Footer = () => {
         >
           <span>Made with</span>
           <FaHeart className="text-red-500 animate-pulse" />
-          <span>in Ethiopia</span>
+          <span>by Firomsa</span>
         </motion.div>
       </div>
     </motion.footer>
